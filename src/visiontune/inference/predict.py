@@ -48,6 +48,11 @@ class Predictor:
 
     @torch.inference_mode()
     def generate(self, records: Sequence[dict[str, Any]], images: Sequence[Any]) -> list[str]:
+        return [text for text, _ in self.generate_with_counts(records, images)]
+
+    @torch.inference_mode()
+    def generate_with_counts(self, records: Sequence[dict[str, Any]], images: Sequence[Any]) -> list[tuple[str, int]]:
+        """Decoded answers plus the number of generated tokens (up to and including EOS)."""
         texts = [self.processor.apply_chat_template(
                     build_messages(r, self.system, self.include_explanation),
                     tokenize=False, add_generation_prompt=True) for r in records]
@@ -57,7 +62,10 @@ class Predictor:
         enc = enc.to(self.model.device)
         out = self.model.generate(**enc, **self.gen_kwargs, pad_token_id=self.processor.tokenizer.pad_token_id)
         new_tokens = out[:, enc["input_ids"].shape[1]:]
-        return self.processor.batch_decode(new_tokens, skip_special_tokens=True)
+        pad = self.processor.tokenizer.pad_token_id
+        counts = (new_tokens != pad).sum(dim=1).tolist()
+        texts = self.processor.batch_decode(new_tokens, skip_special_tokens=True)
+        return list(zip(texts, counts))
 
 
 def score(record: dict[str, Any], output: str) -> dict[str, Any]:
@@ -88,6 +96,11 @@ def compute_metrics(records: list[dict[str, Any]], preds: list[dict[str, Any]]) 
     lat = [p["latency_s"] for _, p in paired if p.get("latency_s") is not None]
     if lat:
         metrics["latency_s_per_example_batched"] = sum(lat) / len(lat)
+    toks = [p["new_tokens"] for _, p in paired if p.get("new_tokens") is not None]
+    if toks:
+        metrics["mean_new_tokens"] = sum(toks) / len(toks)
+        rates = [p["batch_tokens_per_s"] for _, p in paired if p.get("batch_tokens_per_s")]
+        metrics["generated_tokens_per_s_batched"] = sum(rates) / len(rates)
     return metrics
 
 
@@ -118,13 +131,16 @@ def run(cfg: dict[str, Any], dataset: str, split: str, adapter: str | None, limi
                 batch = todo[start:start + bs]
                 imgs = [images[r["hf_index"]]["image"].convert("RGB") if r["has_image"] else None for r in batch]
                 t0 = time.perf_counter()
-                outputs = predictor.generate(batch, imgs)
+                outputs = predictor.generate_with_counts(batch, imgs)
                 if torch.cuda.is_available():
                     torch.cuda.synchronize()
-                per_example = (time.perf_counter() - t0) / len(batch)
-                for rec, output in zip(batch, outputs):
+                batch_seconds = time.perf_counter() - t0
+                per_example = batch_seconds / len(batch)
+                batch_tokens = max(1, sum(n for _, n in outputs))
+                for rec, (output, n_tokens) in zip(batch, outputs):
                     row = {"id": rec["id"], "answer_index": rec["answer_index"], "output": output,
-                           "latency_s": per_example, **score(rec, output)}
+                           "latency_s": per_example, "new_tokens": n_tokens,
+                           "batch_tokens_per_s": batch_tokens / batch_seconds, **score(rec, output)}
                     done[rec["id"]] = row
                     f.write(json.dumps(row, ensure_ascii=False) + "\n")
                 f.flush()

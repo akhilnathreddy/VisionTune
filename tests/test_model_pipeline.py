@@ -67,6 +67,26 @@ def cfg(base_cfg, tiny_model_dir, tmp_path):
     return base_cfg
 
 
+def test_peft_target_compression_never_reaches_vision(tiny_model_dir):
+    """PEFT compresses >= 20 explicit targets into name suffixes; with 6 language layers
+    A2 asks for 42 modules. The vision MLPs share suffixes and must stay untouched."""
+    from transformers import AutoConfig, Qwen2_5_VLForConditionalGeneration
+
+    from visiontune.models.loading import attach_lora
+    from visiontune.models.targets import lora_wrapped_modules
+
+    cfg = AutoConfig.from_pretrained(tiny_model_dir)
+    cfg.text_config.num_hidden_layers = 6
+    cfg.text_config.layer_types = ["full_attention"] * 6
+    cfg.text_config.max_window_layers = 6
+    model = Qwen2_5_VLForConditionalGeneration(cfg)
+    lcfg = {"lora": {"r": 4, "alpha": 8, "dropout": 0.0, "targets": "lm_attn_mlp"}}
+    peft_model = attach_lora(model, lcfg, gradient_checkpointing=False)
+    wrapped = lora_wrapped_modules(peft_model)
+    assert describe_targets(wrapped) == {"lm_attn": 24, "lm_mlp": 18}
+    assert not any("visual" in n for n in wrapped)
+
+
 def records_and_images(n, split, offset=0):
     rows = [sqa_row(question=f"Question {i}?", choices=(f"yes {i}", f"no {i}", "maybe"),
                     answer=i % 3, image_seed=i + offset) for i in range(n)]

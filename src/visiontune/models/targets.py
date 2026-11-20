@@ -67,3 +67,17 @@ def resolve_target_modules(model: nn.Module, preset: str) -> list[str]:
 def describe_targets(names: list[str]) -> dict[str, int]:
     """Count resolved targets per component group, for logs and run summaries."""
     return dict(Counter(classify(n) for n in names))
+
+
+def lora_wrapped_modules(model: nn.Module) -> list[str]:
+    """Names of modules that actually received LoRA weights.
+
+    PEFT compresses long explicit target lists (>= 20 entries) into a minimal set of
+    name suffixes before matching, so the saved `target_modules` can read e.g.
+    ['q_proj', 'k_proj', ...]. This inspects the model itself instead."""
+    names = []
+    for name, module in model.named_modules():
+        if hasattr(module, "lora_A") and len(getattr(module, "lora_A")) > 0:
+            names.append(name.replace("base_model.model.", "", 1))
+    return names
+

@@ -1,0 +1,135 @@
+{
+  "n": 500,
+  "base_accuracy": {
+    "n": 500,
+    "correct": 395,
+    "accuracy": 0.79,
+    "ci95_low": 0.7521551527260814,
+    "ci95_high": 0.8234227297369882
+  },
+  "lora_accuracy": {
+    "n": 500,
+    "correct": 396,
+    "accuracy": 0.792,
+    "ci95_low": 0.7542636965661735,
+    "ci95_high": 0.8252836885345722
+  },
+  "base_format": {
+    "strict": 0.04,
+    "lenient": 0.96,
+    "text": 0.0,
+    "none": 0.0
+  },
+  "lora_format": {
+    "strict": 1.0,
+    "lenient": 0.0,
+    "text": 0.0,
+    "none": 0.0
+  },
+  "paired_bootstrap_lora_minus_base": {
+    "diff": 0.0020000000000000018,
+    "ci_low": -0.017999999999999905,
+    "ci_high": 0.02199999999999991,
+    "p_value": 0.9149,
+    "n": 500
+  },
+  "mcnemar": {
+    "a_only": 11,
+    "b_only": 12,
+    "p_value": 1.0
+  },
+  "by_subject": {
+    "base": {
+      "natural science": {
+        "n": 306,
+        "correct": 231,
+        "accuracy": 0.7549019607843137,
+        "ci95_low": 0.7037421293218145,
+        "ci95_high": 0.7997411700508672
+      },
+      "social science": {
+        "n": 181,
+        "correct": 152,
+        "accuracy": 0.8397790055248618,
+        "ci95_low": 0.7793682655226157,
+        "ci95_high": 0.886066863286824
+      },
+      "language science": {
+        "n": 13,
+        "correct": 12,
+        "accuracy": 0.9230769230769231,
+        "ci95_low": 0.666860488286395,
+        "ci95_high": 0.986289578909774
+      }
+    },
+    "lora": {
+      "natural science": {
+        "n": 306,
+        "correct": 232,
+        "accuracy": 0.7581699346405228,
+        "ci95_low": 0.7071839243826403,
+        "ci95_high": 0.8027542890845629
+      },
+      "social science": {
+        "n": 181,
+        "correct": 153,
+        "accuracy": 0.8453038674033149,
+        "ci95_low": 0.7855051667115865,
+        "ci95_high": 0.8907500454931286
+      },
+      "language science": {
+        "n": 13,
+        "correct": 11,
+        "accuracy": 0.8461538461538461,
+        "ci95_low": 0.5776536874893673,
+        "ci95_high": 0.9567418220347709
+      }
+    }
+  },
+  "by_near_dup_in_train": {
+    "base": {
+      "False": {
+        "n": 374,
+        "correct": 326,
+        "accuracy": 0.8716577540106952,
+        "ci95_low": 0.8339432109715027,
+        "ci95_high": 0.9018151169343226
+      },
+      "True": {
+        "n": 126,
+        "correct": 69,
+        "accuracy": 0.5476190476190477,
+        "ci95_low": 0.46058696779983366,
+        "ci95_high": 0.6318334355396781
+      }
+    },
+    "lora": {
+      "False": {
+        "n": 374,
+        "correct": 332,
+        "accuracy": 0.8877005347593583,
+        "ci95_low": 0.8516799797091116,
+        "ci95_high": 0.9158377004804185
+      },
+      "True": {
+        "n": 126,
+        "correct": 64,
+        "accuracy": 0.5079365079365079,
+        "ci95_low": 0.4217096493923232,
+        "ci95_high": 0.5936937511642622
+      }
+    }
+  },
+  "latency_s_per_example_batched": {
+    "base": 0.6341232039819987,
+    "lora": 1.2797846499879997
+  },
+  "timings_s": {
+    "prepare_s": 63.1,
+    "baseline_eval_s": 401.6,
+    "smoke_train_s": 215.4,
+    "pilot_train_s": 1679.2,
+    "pilot_eval_s": 657.4
+  },
+  "commit": "4944011 Pin training and prediction to one GPU; record M0 validation baseline"
+}

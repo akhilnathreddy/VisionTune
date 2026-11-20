@@ -26,7 +26,7 @@ from visiontune.data.sampling import select_subset
 from visiontune.env import environment_report, pin_single_gpu
 from visiontune.models.loading import (attach_lora, count_parameters, linear_layer_summary,
                                        load_model, load_processor, resolve_dtype)
-from visiontune.models.targets import describe_targets
+from visiontune.models.targets import describe_targets, lora_wrapped_modules
 from visiontune.training.collator import SFTCollator, VQADataset
 
 log = logging.getLogger(__name__)
@@ -131,7 +131,6 @@ def run(cfg: dict[str, Any], resume: bool = False) -> dict[str, Any]:
     processor.save_pretrained(adapter_dir)
     final_eval = trainer.evaluate() if eval_ds is not None else {}
 
-    peft_cfg = trainer.model.peft_config["default"]
     summary = {
         "run_name": cfg["run_name"],
         "method": cfg.get("method"),
@@ -143,7 +142,7 @@ def run(cfg: dict[str, Any], resume: bool = False) -> dict[str, Any]:
         "final_eval": final_eval,
         "peak_vram_gb": round(torch.cuda.max_memory_allocated() / 1024**3, 2) if torch.cuda.is_available() else None,
         "parameters": count_parameters(trainer.model),
-        "lora_targets": describe_targets(sorted(peft_cfg.target_modules)),
+        "lora_targets": describe_targets(lora_wrapped_modules(trainer.model)),
         "linear_layers": linear_layer_summary(trainer.model),
         # Weights only: the processor/tokenizer files saved alongside add ~11 MB.
         "adapter_size_mb": round(sum(f.stat().st_size for f in adapter_dir.glob("adapter_model*")) / 1024**2, 2),

@@ -9,7 +9,7 @@ from typing import Any
 
 import torch
 
-from visiontune.models.targets import describe_targets, resolve_target_modules
+from visiontune.models.targets import describe_targets, lora_wrapped_modules, resolve_target_modules
 
 log = logging.getLogger(__name__)
 
@@ -149,6 +149,10 @@ def attach_lora(model, cfg: dict[str, Any], gradient_checkpointing: bool = True)
         task_type="CAUSAL_LM",
     )
     model = get_peft_model(model, peft_config)
+    wrapped = lora_wrapped_modules(model)
+    if sorted(wrapped) != sorted(targets):
+        raise RuntimeError(f"LoRA was attached to {len(wrapped)} modules but {len(targets)} were requested: "
+                           f"{describe_targets(wrapped)} vs {describe_targets(targets)}")
     params = count_parameters(model)
     if params["trainable"] == 0:
         raise RuntimeError("No trainable parameters after attaching LoRA")
