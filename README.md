@@ -101,6 +101,7 @@ These record the exact examples, settings, versions, hardware, peak VRAM, time a
 
 ## Licenses and attribution
 
+- **Code in this repository:** [MIT](LICENSE). This covers the code only, not the model, the datasets or trained adapters.
 - **Model:** Qwen2.5-VL-3B-Instruct, [Qwen Research License](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/blob/main/LICENSE)
   (non-commercial). Adapters trained here inherit these terms.
 - **ScienceQA:** Lu et al., *Learn to Explain* (NeurIPS 2022), [CC BY-NC-SA 4.0](https://scienceqa.github.io/).
