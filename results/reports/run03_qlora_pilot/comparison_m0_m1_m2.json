@@ -1,0 +1,117 @@
+{
+  "n": 500,
+  "models": {
+    "base": {
+      "accuracy": {
+        "n": 500,
+        "correct": 395,
+        "accuracy": 0.79,
+        "ci95_low": 0.7521551527260814,
+        "ci95_high": 0.8234227297369882
+      },
+      "format": {
+        "strict": 0.04,
+        "lenient": 0.96,
+        "text": 0.0,
+        "none": 0.0
+      },
+      "near_dup": {
+        "False": {
+          "n": 374,
+          "correct": 326,
+          "accuracy": 0.8716577540106952,
+          "ci95_low": 0.8339432109715027,
+          "ci95_high": 0.9018151169343226
+        },
+        "True": {
+          "n": 126,
+          "correct": 69,
+          "accuracy": 0.5476190476190477,
+          "ci95_low": 0.46058696779983366,
+          "ci95_high": 0.6318334355396781
+        }
+      },
+      "latency_s_per_example_batched": 0.599270483197999,
+      "mean_new_tokens": 31.776,
+      "generated_tokens_per_s_batched": 53.38398283061845,
+      "peak_vram_gb": 7.68
+    },
+    "qlora_pilot": {
+      "accuracy": {
+        "n": 500,
+        "correct": 395,
+        "accuracy": 0.79,
+        "ci95_low": 0.7521551527260814,
+        "ci95_high": 0.8234227297369882
+      },
+      "format": {
+        "strict": 1.0,
+        "lenient": 0.0,
+        "text": 0.0,
+        "none": 0.0
+      },
+      "near_dup": {
+        "False": {
+          "n": 374,
+          "correct": 331,
+          "accuracy": 0.8850267379679144,
+          "ci95_low": 0.8487109061953377,
+          "ci95_high": 0.9135135486135748
+        },
+        "True": {
+          "n": 126,
+          "correct": 64,
+          "accuracy": 0.5079365079365079,
+          "ci95_low": 0.4217096493923232,
+          "ci95_high": 0.5936937511642622
+        }
+      },
+      "latency_s_per_example_batched": 1.5972852021139998,
+      "mean_new_tokens": 48.55,
+      "generated_tokens_per_s_batched": 30.956098406889296,
+      "peak_vram_gb": 3.88
+    }
+  },
+  "pairs": {
+    "qlora_pilot_minus_base": {
+      "paired_bootstrap": {
+        "diff": 0.0,
+        "ci_low": -0.02400000000000002,
+        "ci_high": 0.02200000000000002,
+        "p_value": 1.0,
+        "n": 500
+      },
+      "mcnemar": {
+        "a_only": 18,
+        "b_only": 18,
+        "p_value": 1.0
+      }
+    }
+  },
+  "timings_s": {
+    "prepare_s": 65.3,
+    "qlora_train_s": 1795.3,
+    "qlora_eval_s": 819.7,
+    "base_eval_s": 314.7
+  },
+  "commit": "899ccb1 Add QLoRA pilot notebook with three-way M0/M1/M2 comparison",
+  "qlora_run": {
+    "train_seconds_this_session": 1588.0,
+    "peak_vram_gb": 4.96,
+    "adapter_size_mb": 28.17,
+    "lora_targets": {
+      "lm_attn": 144
+    },
+    "parameters": {
+      "total": 3761995776,
+      "trainable": 7372800
+    },
+    "final_eval": {
+      "eval_loss": 0.31965872645378113,
+      "eval_runtime": 130.0719,
+      "eval_samples_per_second": 2.306,
+      "eval_steps_per_second": 2.306,
+      "epoch": 2.0
+    }
+  }
+}
