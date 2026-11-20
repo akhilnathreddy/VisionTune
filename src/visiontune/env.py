@@ -14,6 +14,18 @@ PACKAGES = [
 ]
 
 
+def pin_single_gpu(index: int = 0) -> None:
+    """Expose only one GPU to this process, unless the caller already chose.
+
+    On multi-GPU machines (Kaggle "T4 x2") transformers' Trainer otherwise wraps the
+    model in nn.DataParallel. DataParallel replicas have no registered parameters,
+    so Qwen2.5-VL's `self.visual.dtype` raises StopIteration in the forward pass
+    (observed on Kaggle, transformers 5.23). Must run before CUDA is initialized."""
+    import os
+
+    os.environ.setdefault("CUDA_VISIBLE_DEVICES", str(index))
+
+
 def package_versions() -> dict[str, str | None]:
     versions: dict[str, str | None] = {}
     for name in PACKAGES:

@@ -23,7 +23,7 @@ import torch
 from visiontune.config import load_config, save_config
 from visiontune.data.loaders import load_image_source, load_records
 from visiontune.data.sampling import select_subset
-from visiontune.env import environment_report
+from visiontune.env import environment_report, pin_single_gpu
 from visiontune.models.loading import (attach_lora, count_parameters, linear_layer_summary,
                                        load_model, load_processor, resolve_dtype)
 from visiontune.models.targets import describe_targets
@@ -162,6 +162,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--resume", action="store_true", help="continue from the latest checkpoint-*")
     parser.add_argument("overrides", nargs="*", help="key.path=value overrides")
     args = parser.parse_args(argv)
+    pin_single_gpu()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
     run(load_config(args.config, args.overrides), resume=args.resume)
 

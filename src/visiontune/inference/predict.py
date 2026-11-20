@@ -30,6 +30,7 @@ from visiontune.data.io import iter_jsonl
 from visiontune.data.loaders import load_image_source, load_records
 from visiontune.data.sampling import select_subset
 from visiontune.evaluation.extraction import extract_answer, extract_explanation
+from visiontune.env import pin_single_gpu
 from visiontune.evaluation.metrics import group_summary, summarize
 from visiontune.prompts import build_messages
 
@@ -157,6 +158,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--out", default=None)
     parser.add_argument("overrides", nargs="*", help="key.path=value overrides")
     args = parser.parse_args(argv)
+    pin_single_gpu()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
     cfg = load_config(args.config, args.overrides)
