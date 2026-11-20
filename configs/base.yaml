@@ -1,0 +1,39 @@
+# Shared settings for every VisionTune experiment.
+# Experiment configs use `extends:` to inherit this file and override keys.
+
+seed: 42
+
+model:
+  name_or_path: Qwen/Qwen2.5-VL-3B-Instruct
+  revision: 66285546d2b821cf421d4f5eb2576359d3770cd3   # HF commit, pinned 2026-11-20
+  dtype: auto               # auto -> bf16 on Ampere+ GPUs, fp16 on T4/P100, fp32 on CPU
+  attn_implementation: sdpa # flash_attention_2 only on Ampere+ with flash-attn installed
+  vision_fp32: false        # set true if fp16 produces NaN/inf in the vision tower (T4)
+
+processor:
+  # Qwen2.5-VL turns every 28x28 pixel block into one visual token.
+  # These caps bound the visual token count (here 128..512 tokens per image),
+  # which is the main lever on memory. Do not resize images by hand.
+  min_pixels: 100352   # 128 * 28 * 28
+  max_pixels: 401408   # 512 * 28 * 28
+
+data:
+  scienceqa_id: derek-thomas/ScienceQA   # HF mirror of the official ScienceQA release
+  scienceqa_revision: f18b0a70359ebfb41f658fd564208d0355b013f4
+  ai2d_id: lmms-lab/ai2d                 # AI2D test set (3,088 four-option questions), eval only
+  ai2d_revision: c83a9b9692933aff8349157c88a413df9d02c4e5
+  require_image: true                    # VLM study: keep only questions with an image
+  max_explanation_chars: 600             # trim long ScienceQA solutions at a sentence boundary
+  near_dup_policy: flag                  # flag | exclude (see src/visiontune/data/prepare.py)
+  processed_dir: data/processed
+
+prompt:
+  system: >-
+    You are a careful science tutor. Look at the image, answer the
+    multiple-choice question, and briefly explain your reasoning.
+  include_explanation: true
+
+generation:
+  max_new_tokens: 160
+  do_sample: false
+  batch_size: 8

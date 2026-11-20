@@ -1,0 +1,33 @@
+# Experiment A (M1): LoRA on a bf16/fp16 base model.
+extends: base.yaml
+
+run_name: scienceqa_qwen25vl3b_lora_r16_seed42
+method: lora
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  # Ablation preset (see src/visiontune/models/targets.py):
+  #   A1 lm_attn | A2 lm_attn_mlp | A3 lm_attn_mlp_merger | A4 lm_attn_mlp_merger_vision_attn
+  targets: lm_attn
+
+train:
+  max_train_samples: 500     # pilot budget; 2000 / 5000 / all for the scaling study
+  max_eval_samples: 300      # validation subset for eval loss during training
+  epochs: 2
+  learning_rate: 1.0e-4
+  lr_scheduler: cosine
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  per_device_batch_size: 1
+  gradient_accumulation_steps: 8
+  gradient_checkpointing: true
+  max_grad_norm: 1.0
+  optim: adamw_torch
+  logging_steps: 10
+  eval_steps: 100
+  save_steps: 100
+  save_total_limit: 3
+  report_to: none            # set to wandb once WANDB_API_KEY is in Kaggle Secrets
+  output_root: outputs

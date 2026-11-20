@@ -1,0 +1,19 @@
+# Experiment B (M2): QLoRA - 4-bit NF4 base model + LoRA adapters.
+extends: lora.yaml
+
+run_name: scienceqa_qwen25vl3b_qlora_r16_seed42
+method: qlora
+
+quantization:
+  load_in_4bit: true
+  quant_type: nf4
+  double_quant: true
+  compute_dtype: auto      # follows model.dtype resolution
+  # Keep the vision tower and lm_head in 16-bit; only the language model is
+  # quantized (docs/blueprint.md section 5.2). Both spellings are needed:
+  # transformers v4 matches these as substrings, v5 only as a path prefix or
+  # suffix, so a bare "visual" would NOT skip "model.visual.*" on v5.
+  skip_modules: [model.visual, visual, lm_head]
+
+train:
+  optim: paged_adamw_8bit

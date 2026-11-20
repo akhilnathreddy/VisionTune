@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Data and model artifacts (never commit raw data, checkpoints or adapters)
+data/raw/
+data/processed/*
+!data/processed/.gitkeep
+outputs/
+checkpoints/
+runs/
+wandb/
+*.safetensors
+*.bin
+*.pt
+*.ckpt
+hf_cache/
+
+# Secrets
+.env
+*.token
+kaggle.json
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/

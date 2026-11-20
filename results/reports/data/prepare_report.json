@@ -1,0 +1,71 @@
+{
+  "scienceqa": {
+    "dataset": "derek-thomas/ScienceQA",
+    "revision": "f18b0a70359ebfb41f658fd564208d0355b013f4",
+    "splits": {
+      "train": {
+        "raw": 12726,
+        "kept": 6218,
+        "excluded": {
+          "no_image": 6508
+        },
+        "by_subject": {
+          "natural science": 3836,
+          "social science": 2246,
+          "language science": 136
+        }
+      },
+      "validation": {
+        "raw": 4241,
+        "near_dup_in_train": {
+          "flagged": 514,
+          "same_answer": 380,
+          "different_answer": 134
+        },
+        "kept": 2097,
+        "excluded": {
+          "no_image": 2144
+        },
+        "by_subject": {
+          "natural science": 1287,
+          "social science": 762,
+          "language science": 48
+        }
+      },
+      "test": {
+        "raw": 4241,
+        "near_dup_in_train": {
+          "flagged": 482,
+          "different_answer": 119,
+          "same_answer": 363
+        },
+        "kept": 2017,
+        "excluded": {
+          "no_image": 2224
+        },
+        "by_subject": {
+          "natural science": 1209,
+          "social science": 764,
+          "language science": 44
+        }
+      }
+    }
+  },
+  "config": {
+    "scienceqa_id": "derek-thomas/ScienceQA",
+    "scienceqa_revision": "f18b0a70359ebfb41f658fd564208d0355b013f4",
+    "ai2d_id": "lmms-lab/ai2d",
+    "ai2d_revision": "c83a9b9692933aff8349157c88a413df9d02c4e5",
+    "require_image": true,
+    "max_explanation_chars": 600,
+    "near_dup_policy": "flag",
+    "processed_dir": "data/processed"
+  },
+  "ai2d": {
+    "dataset": "lmms-lab/ai2d",
+    "revision": "c83a9b9692933aff8349157c88a413df9d02c4e5",
+    "raw": 3088,
+    "kept": 3088,
+    "excluded": {}
+  }
+}

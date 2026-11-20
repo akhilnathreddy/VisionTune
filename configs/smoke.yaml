@@ -1,0 +1,14 @@
+# Tiny overfit test: the loss on 8 examples must fall close to zero.
+# Run this before any real experiment (blueprint 5.6).
+extends: lora.yaml
+
+run_name: smoke_overfit_lora
+train:
+  max_train_samples: 8
+  max_eval_samples: 8
+  epochs: 15
+  learning_rate: 2.0e-4
+  gradient_accumulation_steps: 1
+  logging_steps: 2
+  eval_steps: 1000000
+  save_steps: 1000000
