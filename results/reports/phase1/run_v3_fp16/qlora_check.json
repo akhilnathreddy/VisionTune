@@ -1,0 +1,15 @@
+{
+  "compute_dtype": "torch.float16",
+  "linear_layers": {
+    "vision": {
+      "Linear": 162
+    },
+    "language": {
+      "Linear4bit": 252,
+      "Linear": 289
+    }
+  },
+  "loss": 1.062747836112976,
+  "lora_tensors_with_grad": 288,
+  "peak_vram_gb": 7.01
+}

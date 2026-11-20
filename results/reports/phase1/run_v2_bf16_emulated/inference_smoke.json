@@ -1,0 +1,141 @@
+{
+  "model": {
+    "name_or_path": "Qwen/Qwen2.5-VL-3B-Instruct",
+    "revision": "66285546d2b821cf421d4f5eb2576359d3770cd3",
+    "dtype": "auto",
+    "attn_implementation": "sdpa",
+    "vision_fp32": false
+  },
+  "processor": {
+    "min_pixels": 100352,
+    "max_pixels": 401408
+  },
+  "load_seconds": 44.0,
+  "logits_finite": true,
+  "peak_inference_vram_gb": 7.51,
+  "results": [
+    {
+      "id": "sqa-val-00001",
+      "question": "Which animal's mouth is also adapted for bottom feeding?",
+      "choices": [
+        "discus",
+        "armored catfish"
+      ],
+      "answer_index": 1,
+      "output": "B\nExplanation: Both the discus and the armored catfish have mouths adapted for bottom feeding, as they both feed on invertebrates, plants, and small fish by locating their food at the bottom of water bodies.",
+      "latency_s": 3.202,
+      "pred_index": 1,
+      "extraction": "lenient",
+      "correct": true,
+      "pred_explanation": "Both the discus and the armored catfish have mouths adapted for bottom feeding, as they both feed on invertebrates, plants, and small fish by locating their food at the bottom of water bodies."
+    },
+    {
+      "id": "sqa-val-00003",
+      "question": "Which of the following could Wendy's test show?",
+      "choices": [
+        "whether producing more insulin would help the bacteria grow faster",
+        "whether different types of bacteria would need different nutrients to produce insulin",
+        "whether she added enough nutrients to help the bacteria produce 20% more insulin"
+      ],
+      "answer_index": 2,
+      "output": "C\nExplanation: The test shows whether Wendy added enough nutrients to help the bacteria produce 20% more insulin.",
+      "latency_s": 2.41,
+      "pred_index": 2,
+      "extraction": "lenient",
+      "correct": true,
+      "pred_explanation": "The test shows whether Wendy added enough nutrients to help the bacteria produce 20% more insulin."
+    },
+    {
+      "id": "sqa-val-00005",
+      "question": "Does this passage describe the weather or the climate?",
+      "choices": [
+        "weather",
+        "climate"
+      ],
+      "answer_index": 1,
+      "output": "A. weather\nExplanation: The passage describes the average wind speed in Chicago, which is a measure of the current atmospheric conditions at that location and time, making it a description of the weather.",
+      "latency_s": 2.792,
+      "pred_index": 0,
+      "extraction": "lenient",
+      "correct": false,
+      "pred_explanation": "The passage describes the average wind speed in Chicago, which is a measure of the current atmospheric conditions at that location and time, making it a description of the weather."
+    },
+    {
+      "id": "sqa-val-00007",
+      "question": "Which animal's feet are also adapted for grabbing prey?",
+      "choices": [
+        "sable",
+        "New Zealand falcon"
+      ],
+      "answer_index": 1,
+      "output": "B\nExplanation: The New Zealand falcon is known for its sharp talons that are adapted for catching prey, similar to the bald eagle's feet.",
+      "latency_s": 2.458,
+      "pred_index": 1,
+      "extraction": "lenient",
+      "correct": true,
+      "pred_explanation": "The New Zealand falcon is known for its sharp talons that are adapted for catching prey, similar to the bald eagle's feet."
+    },
+    {
+      "id": "sqa-val-00008",
+      "question": "Is the following statement about our solar system true or false? Jupiter's volume is more than 10,000 times as large as the volume of Mars.",
+      "choices": [
+        "true",
+        "false"
+      ],
+      "answer_index": 1,
+      "output": "A\nExplanation: The volume of Jupiter is 1.43 x 10^15 km^3, while the volume of Mars is 1.63 x 10^11 km^3. Dividing Jupiter's volume by Mars' volume gives approximately 8,827, which is indeed more than 10,000.",
+      "latency_s": 4.669,
+      "pred_index": 0,
+      "extraction": "lenient",
+      "correct": false,
+      "pred_explanation": "The volume of Jupiter is 1.43 x 10^15 km^3, while the volume of Mars is 1.63 x 10^11 km^3. Dividing Jupiter's volume by Mars' volume gives approximately 8,827, which is indeed more than 10,000."
+    },
+    {
+      "id": "sqa-val-00009",
+      "question": "What is the capital of Massachusetts?",
+      "choices": [
+        "Plymouth",
+        "Albany",
+        "Wichita",
+        "Boston"
+      ],
+      "answer_index": 3,
+      "output": "D\nExplanation: Boston is the capital city of Massachusetts.",
+      "latency_s": 2.746,
+      "pred_index": 3,
+      "extraction": "lenient",
+      "correct": true,
+      "pred_explanation": "Boston is the capital city of Massachusetts."
+    },
+    {
+      "id": "sqa-val-00012",
+      "question": "Is Lithops bromfieldii made up of many cells?",
+      "choices": [
+        "yes",
+        "no"
+      ],
+      "answer_index": 0,
+      "output": "A. yes\nExplanation: Lithops bromfieldii is composed of two brown or gray leaves, which are made up of many cells.",
+      "latency_s": 2.377,
+      "pred_index": 0,
+      "extraction": "lenient",
+      "correct": true,
+      "pred_explanation": "Lithops bromfieldii is composed of two brown or gray leaves, which are made up of many cells."
+    },
+    {
+      "id": "sqa-val-00013",
+      "question": "Which bird's beak is also adapted to tear through meat?",
+      "choices": [
+        "sand martin",
+        "Cape vulture"
+      ],
+      "answer_index": 1,
+      "output": "B\nExplanation: The Cape vulture has a hooked beak that is adapted for tearing through meat, similar to the red-tailed hawk's beak.",
+      "latency_s": 2.476,
+      "pred_index": 1,
+      "extraction": "lenient",
+      "correct": true,
+      "pred_explanation": "The Cape vulture has a hooked beak that is adapted for tearing through meat, similar to the red-tailed hawk's beak."
+    }
+  ]
+}

@@ -145,7 +145,9 @@ def run(cfg: dict[str, Any], resume: bool = False) -> dict[str, Any]:
         "parameters": count_parameters(trainer.model),
         "lora_targets": describe_targets(sorted(peft_cfg.target_modules)),
         "linear_layers": linear_layer_summary(trainer.model),
-        "adapter_size_mb": directory_size_mb(adapter_dir),
+        # Weights only: the processor/tokenizer files saved alongside add ~11 MB.
+        "adapter_size_mb": round(sum(f.stat().st_size for f in adapter_dir.glob("adapter_model*")) / 1024**2, 2),
+        "adapter_dir_size_mb": directory_size_mb(adapter_dir),
         "log_history": trainer.state.log_history,
         "gpu": env["gpus"],
     }

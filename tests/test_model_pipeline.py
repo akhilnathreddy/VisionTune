@@ -128,6 +128,7 @@ def test_train_overfit_save_and_predict(cfg, tmp_path, monkeypatch):
     assert losses[-1] < losses[0] - 0.25, losses
     assert 0 < summary["parameters"]["trainable"] < summary["parameters"]["total"]
     assert summary["lora_targets"] == {"lm_attn": 8}
+    assert 0 < summary["adapter_size_mb"] < 1 < summary["adapter_dir_size_mb"]   # tiny adapter, ~11 MB tokenizer
     run_dir = tmp_path / "outputs/tiny"
     assert (run_dir / "adapter/adapter_config.json").exists()
     from safetensors.torch import load_file

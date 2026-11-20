@@ -12,9 +12,10 @@ Full plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log list
 
 | Milestone | State |
 |---|---|
-| M1 Setup | Code and notebook ready; waiting for a Kaggle GPU run of `notebooks/01_environment_setup.ipynb` |
+| M1 Setup | ✅ Done on a Kaggle T4: model loads, inference and the QLoRA path verified (`results/reports/phase1/`) |
 | M2 Dataset | Pipeline built and run on the real data (see below) |
-| M3 Baseline · M4 LoRA · M5 QLoRA | Training and evaluation CLIs built and tested end-to-end on a tiny model on CPU; no GPU results yet |
+| M3 Baseline · M4 LoRA | First run in progress: `notebooks/02_baseline_and_lora_pilot.ipynb` (M0 vs 500-example LoRA pilot, validation only) |
+| M5 QLoRA | 4-bit load + backward pass verified; training run not started |
 | M6–M9 | Not started |
 
 No accuracy numbers are reported yet. Results tables are filled only with measured values.
@@ -90,7 +91,7 @@ src/visiontune/
   evaluation/       answer extraction, accuracy CIs, paired bootstrap, McNemar
   inference/        resumable batched predict + metrics CLI
   prompts.py        the one prompt/target formatter shared by every model
-notebooks/          Kaggle notebooks (01 = environment setup)
+notebooks/          Kaggle notebooks (01 = environment setup, 02 = baseline + LoRA pilot)
 results/reports/    committed reports (data prep, phase outputs)
 docs/blueprint.md   project plan and methodology
 tests/
@@ -101,6 +102,7 @@ These record the exact examples, settings, versions, hardware, peak VRAM, time a
 
 ## Licenses and attribution
 
+- **Code in this repository:** [MIT](LICENSE). This covers the code only, not the model, the datasets or trained adapters.
 - **Model:** Qwen2.5-VL-3B-Instruct, [Qwen Research License](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct/blob/main/LICENSE)
   (non-commercial). Adapters trained here inherit these terms.
 - **ScienceQA:** Lu et al., *Learn to Explain* (NeurIPS 2022), [CC BY-NC-SA 4.0](https://scienceqa.github.io/).
