@@ -14,12 +14,20 @@ from visiontune.models.targets import describe_targets, resolve_target_modules
 log = logging.getLogger(__name__)
 
 
+def native_bf16() -> bool:
+    """True only for GPUs with hardware bf16 (compute capability >= 8.0, Ampere+).
+
+    torch.cuda.is_bf16_supported() also returns True on a T4 (7.5), where bf16 is
+    emulated and slow; observed on Kaggle with torch 2.11, so we check capability."""
+    return torch.cuda.is_available() and torch.cuda.get_device_capability()[0] >= 8
+
+
 def resolve_dtype(name: str | None) -> torch.dtype:
-    """auto -> bf16 if the GPU supports it (Ampere+), else fp16 on GPU, fp32 on CPU."""
+    """auto -> bf16 on Ampere+ GPUs, fp16 on older GPUs (T4, P100), fp32 on CPU."""
     name = (name or "auto").lower()
     if name == "auto":
         if torch.cuda.is_available():
-            return torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+            return torch.bfloat16 if native_bf16() else torch.float16
         return torch.float32
     return {"bf16": torch.bfloat16, "bfloat16": torch.bfloat16, "fp16": torch.float16,
             "float16": torch.float16, "fp32": torch.float32, "float32": torch.float32}[name]
