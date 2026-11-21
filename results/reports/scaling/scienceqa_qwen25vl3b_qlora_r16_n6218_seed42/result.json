@@ -1,0 +1,88 @@
+{
+  "run_name": "scienceqa_qwen25vl3b_qlora_r16_n6218_seed42",
+  "method": "qlora",
+  "n_train": 6218,
+  "commit": "40aa6d0 Add parameterized data-scaling notebook (full validation evaluation)",
+  "timings_s": {
+    "prepare_s": 65.2,
+    "train_s": 17134.4,
+    "eval_s": 3846.5
+  },
+  "validation": {
+    "overall": {
+      "n": 2097,
+      "correct": 1877,
+      "accuracy": 0.8950882212684788,
+      "ci95_low": 0.8812421127156758,
+      "ci95_high": 0.907489465764481
+    },
+    "format": {
+      "strict": 1.0,
+      "lenient": 0.0,
+      "text": 0.0,
+      "none": 0.0
+    },
+    "by_subject": {
+      "natural science": {
+        "n": 1287,
+        "correct": 1097,
+        "accuracy": 0.8523698523698524,
+        "ci95_low": 0.8319413953696617,
+        "ci95_high": 0.8707010505787733
+      },
+      "social science": {
+        "n": 762,
+        "correct": 735,
+        "accuracy": 0.9645669291338582,
+        "ci95_low": 0.9489376121589038,
+        "ci95_high": 0.9755357129522907
+      },
+      "language science": {
+        "n": 48,
+        "correct": 45,
+        "accuracy": 0.9375,
+        "ci95_low": 0.8316456183361519,
+        "ci95_high": 0.9785167672589278
+      }
+    },
+    "by_near_dup_in_train": {
+      "False": {
+        "n": 1583,
+        "correct": 1481,
+        "accuracy": 0.9355653821857233,
+        "ci95_low": 0.9223847176354554,
+        "ci95_high": 0.9466371952229207
+      },
+      "True": {
+        "n": 514,
+        "correct": 396,
+        "accuracy": 0.7704280155642024,
+        "ci95_low": 0.7321441852108805,
+        "ci95_high": 0.8046996600087923
+      }
+    },
+    "latency_s_per_example_batched": 1.8221552514496953,
+    "mean_new_tokens": 59.27944682880305,
+    "generated_tokens_per_s_batched": 32.7009980951771,
+    "peak_vram_gb": 3.9
+  },
+  "train": {
+    "train_seconds_this_session": 16915.5,
+    "peak_vram_gb": 4.95,
+    "adapter_size_mb": 28.17,
+    "lora_targets": {
+      "lm_attn": 144
+    },
+    "parameters": {
+      "total": 3761995776,
+      "trainable": 7372800
+    },
+    "final_eval": {
+      "eval_loss": 0.10376828908920288,
+      "eval_runtime": 125.6102,
+      "eval_samples_per_second": 2.388,
+      "eval_steps_per_second": 2.388,
+      "epoch": 2.0
+    }
+  }
+}
