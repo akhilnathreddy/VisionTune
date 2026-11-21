@@ -4,6 +4,10 @@ Every model is scored on the **full ScienceQA validation split: 2,097 image ques
 Training subsets are nested (seed 42), and all other settings are the pilot's: r=16, α=32, 2 epochs, LR 1e-4,
 batch 1 × 8, fp16 on one Kaggle T4. The test split is untouched.
 
+![Scaling curve](../../plots/scaling_curve.png)
+
+Regenerate with `python scripts/plot_scaling.py` (reads every `*/result.json` in this folder).
+
 ## Results so far
 
 | Model | Train examples | Accuracy (95% CI) | Δ vs M0 (paired bootstrap 95% CI) | McNemar (M0-only / model-only) | Novel (n=1,583) | Near-dup (n=514) | Train time | Peak train VRAM | Val loss |
