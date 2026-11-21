@@ -13,12 +13,27 @@ Full plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log list
 | Milestone | State |
 |---|---|
 | M1 Setup | ✅ Done on a Kaggle T4: model loads, inference and the QLoRA path verified (`results/reports/phase1/`) |
-| M2 Dataset | Pipeline built and run on the real data (see below) |
-| M3 Baseline · M4 LoRA | Pilot done (validation, n=500): M0 79.0% vs LoRA-500 79.2%, a difference within noise; format compliance 4% → 100%. See `results/reports/run02_baseline_lora_pilot/` |
-| M5 QLoRA | Pilot done: same accuracy as LoRA (79.0% vs 79.2%), 44% less training VRAM (4.96 vs 8.83 GB). See `results/reports/run03_qlora_pilot/` |
-| M6–M9 | Not started |
+| M2 Dataset | ✅ Validated, de-duplicated pipeline run on the real data (see below) |
+| M3 Baseline | ✅ M0 = 78.7% on the full validation split (n = 2,097) |
+| M4 LoRA · M5 QLoRA | ✅ Full data (6,218 examples): LoRA 89.3%, QLoRA 89.5% (equal, p = 0.61); QLoRA uses 44% less training VRAM |
+| M6 Benchmarking | 🔄 Validation scaling study done (below). Sealed test set and AI2D transfer are next |
+| M7–M9 | Not started |
 
-Only validation-set pilot numbers exist so far; the test split is untouched. Results tables are filled only with measured values.
+### Headline results (ScienceQA **validation**, n = 2,097; test split still sealed)
+
+![Scaling curve](results/plots/scaling_curve.png)
+
+| Model | Train examples | Accuracy | Δ vs base | Peak train VRAM |
+|---|---:|---:|---:|---:|
+| M0 Qwen2.5-VL-3B (no fine-tuning) | n/a | 78.7% | n/a | n/a |
+| QLoRA | 2,000 | 83.8% | +5.2 pp | 4.96 GB |
+| QLoRA | 5,000 | 88.7% | +10.0 pp | 4.96 GB |
+| QLoRA | 6,218 | **89.5%** | **+10.8 pp** | 4.95 GB |
+| LoRA | 6,218 | 89.3% | +10.6 pp | 8.82 GB |
+
+All gains over the base are significant (paired bootstrap and McNemar, p < 0.001). Returns diminish after ~5,000 examples
+(+0.8 pp from 5,000 → 6,218, n.s.). Questions whose template and figure also appear in training gain more (+20.6 pp)
+than novel ones (+7.6 pp). Both are reported throughout. Full write-up: [`results/reports/scaling/README.md`](results/reports/scaling/README.md).
 
 ### Data, as prepared (`results/reports/data/prepare_report.json`)
 
@@ -91,7 +106,7 @@ src/visiontune/
   evaluation/       answer extraction, accuracy CIs, paired bootstrap, McNemar
   inference/        resumable batched predict + metrics CLI
   prompts.py        the one prompt/target formatter shared by every model
-notebooks/          Kaggle notebooks (01 = environment setup, 02 = baseline + LoRA pilot)
+notebooks/          Kaggle notebooks (01 setup · 02 LoRA pilot · 03 QLoRA pilot · 04 data-scaling run)
 results/reports/    committed reports (data prep, phase outputs)
 docs/blueprint.md   project plan and methodology
 tests/
