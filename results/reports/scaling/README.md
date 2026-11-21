@@ -12,7 +12,7 @@ batch 1 × 8, fp16 on one Kaggle T4. The test split is untouched.
 | QLoRA D2 | 2,000 | **83.8%** (82.2–85.3) | **+5.2 pp (+3.7, +6.5)**, p < 0.001 | 60 / 168, p = 5e-13 | 89.8% (+3.9) | 65.4% (+8.9) | 93 min | 4.96 GB | 0.179 |
 | QLoRA D3 | 5,000 | **88.7%** (87.3–90.0) | **+10.0 pp (+8.4, +11.7)**, p < 0.001 | 61 / 271, p = 1e-32 | 92.7% (+6.8) | 76.5% (+20.0) | 261 min | 4.96 GB | 0.115 |
 | QLoRA D4 | 6,218 (all) | **89.5%** (88.1–90.7) | **+10.8 pp (+9.1, +12.5)**, p < 0.001 | 62 / 289, p = 4e-36 | 93.6% (+7.6) | 77.0% (+20.6) | 282 min | 4.95 GB | 0.104 |
-| LoRA D4 | 6,218 | queued | | | | | | | |
+| LoRA D4 | 6,218 (all) | **89.3%** (87.9–90.5) | **+10.6 pp (+9.0, +12.3)**, p < 0.001 | 55 / 277, p = 9e-37 | 93.1% (+7.2) | 77.4% (+21.0) | 288 min | 8.82 GB | 0.105 |
 | QLoRA D1 | 500 | queued (rescore on full validation) | | | | | | | |
 
 **Marginal gains between budgets (paired):**
@@ -31,6 +31,26 @@ quarter. Generation: 59.3 tokens per answer, 32.7 tokens/s (batch 8), peak infer
 
 D2 by subject: natural science 75.9 → 78.9% (+3.0, p < 0.001); social science 82.5 → 92.0% (+9.4, p < 0.001);
 language science 91.7 → 87.5% (n = 48, not significant).
+
+## LoRA vs QLoRA at full data (6,218 examples): H2 and H3
+
+| Metric | LoRA (fp16 base) | QLoRA (4-bit NF4 base) | Difference |
+|---|---:|---:|---:|
+| Validation accuracy | 89.3% | 89.5% | QLoRA − LoRA = +0.2 pp (−0.6, +1.1), p = 0.61; McNemar 36 / 41, p = 0.65 |
+| Novel / near-dup accuracy | 93.1% / 77.4% | 93.6% / 77.0% | +0.4 / −0.4 pp (both n.s.) |
+| Same predicted answer | | | 95.9% of questions |
+| **Peak training VRAM** | 8.82 GB | **4.95 GB** | **−44%** |
+| Training time (12,436 example-passes) | 288 min | 282 min | about equal |
+| Final validation loss | 0.105 | 0.104 | about equal |
+| **Peak inference VRAM** | 7.72 GB | **3.90 GB** | **−49%** |
+| Generation speed (batch 8) | **41.6 tok/s** | 32.7 tok/s | QLoRA 21% slower (4-bit dequantization on T4) |
+| Trainable parameters / adapter size | 7.37 M / 28.2 MB | 7.37 M / 28.2 MB | identical |
+
+- **H2 (LoRA ≈ QLoRA in task performance): supported** at the full budget, now *with* a large gain over the base for both.
+  The 95% CI on the difference rules out more than about 1 pp in either direction.
+- **H3 (QLoRA reduces training memory): supported.** 44% less peak training memory at the same wall-clock time.
+- **Trade-off:** QLoRA halves memory for training and serving, but generates about 20% slower on a T4. On 16 GB GPUs, QLoRA is
+  the better default. If latency matters and memory is available, LoRA (or a merged LoRA) serves faster.
 
 ## Notes
 
