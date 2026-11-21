@@ -8,21 +8,22 @@ batch 1 × 8, fp16 on one Kaggle T4. The test split is untouched.
 
 Regenerate with `python scripts/plot_scaling.py` (reads every `*/result.json` in this folder).
 
-## Results so far
+## Results
 
 | Model | Train examples | Accuracy (95% CI) | Δ vs M0 (paired bootstrap 95% CI) | McNemar (M0-only / model-only) | Novel (n=1,583) | Near-dup (n=514) | Train time | Peak train VRAM | Val loss |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | M0 base | n/a | 78.7% (76.9–80.4) | n/a | n/a | 85.9% | 56.4% | n/a | n/a | n/a |
+| QLoRA D1 | 500 | 80.0% (78.2–81.6) | +1.3 pp (+0.1, +2.4), p = 0.03 | 60 / 87, p = 0.03 | 86.8% (+0.9) | 59.0% (+2.5) | 26 min | 4.96 GB | 0.320 |
 | QLoRA D2 | 2,000 | **83.8%** (82.2–85.3) | **+5.2 pp (+3.7, +6.5)**, p < 0.001 | 60 / 168, p = 5e-13 | 89.8% (+3.9) | 65.4% (+8.9) | 93 min | 4.96 GB | 0.179 |
 | QLoRA D3 | 5,000 | **88.7%** (87.3–90.0) | **+10.0 pp (+8.4, +11.7)**, p < 0.001 | 61 / 271, p = 1e-32 | 92.7% (+6.8) | 76.5% (+20.0) | 261 min | 4.96 GB | 0.115 |
 | QLoRA D4 | 6,218 (all) | **89.5%** (88.1–90.7) | **+10.8 pp (+9.1, +12.5)**, p < 0.001 | 62 / 289, p = 4e-36 | 93.6% (+7.6) | 77.0% (+20.6) | 282 min | 4.95 GB | 0.104 |
 | LoRA D4 | 6,218 (all) | **89.3%** (87.9–90.5) | **+10.6 pp (+9.0, +12.3)**, p < 0.001 | 55 / 277, p = 9e-37 | 93.1% (+7.2) | 77.4% (+21.0) | 288 min | 8.82 GB | 0.105 |
-| QLoRA D1 | 500 | queued (rescore on full validation) | | | | | | | |
 
 **Marginal gains between budgets (paired):**
 
 | Step | Δ accuracy (95% CI) | McNemar | Reading |
 |---|---:|---:|---|
+| 500 → 2,000 | +3.9 pp (+2.7, +5.1) | 45 / 126, p = 4e-10 | large, clearly significant |
 | 2,000 → 5,000 | +4.9 pp (+3.5, +6.3) | 54 / 156, p = 1e-12 | large, clearly significant |
 | 5,000 → 6,218 | +0.8 pp (−0.1, +1.7) | 35 / 52, p = 0.09 | small, not significant at α = 0.05 |
 
@@ -62,6 +63,9 @@ language science 91.7 → 87.5% (n = 48, not significant).
   items also improve significantly (D2 +3.9 pp, CI +2.5 to +5.3; D4 +7.6 pp, CI +6.1 to +9.2). The gap between the two groups
   grows with data, so part of the D4 gain on templated questions is likely familiarity with those templates. Report both
   numbers rather than only the headline.
+- **500 examples, revisited:** on the full validation split, the 500-example adapter gives a small but significant +1.3 pp
+  (p = 0.03). The 500-question pilot (run 03) could not resolve it (0.0 pp, CI ±2.3). The retrained adapter reproduced the
+  pilot's validation loss exactly (0.31966), which confirms training is deterministic for a fixed seed and data.
 - **Batch-composition effect:** M0's outputs on the 500 pilot questions differ in explanation *wording* on 19/500 items when
   they are batched with different neighbours (fp16 + left padding). The predicted answer letter is identical on all 500,
   so accuracy is unaffected. Within one evaluation run, results are deterministic.

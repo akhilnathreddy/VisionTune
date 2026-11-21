@@ -1,0 +1,247 @@
+{
+  "overall": {
+    "n": 2097,
+    "correct": 1677,
+    "accuracy": 0.7997138769670958,
+    "ci95_low": 0.7820433561254553,
+    "ci95_high": 0.8162883241096425
+  },
+  "format": {
+    "strict": 1.0,
+    "lenient": 0.0,
+    "text": 0.0,
+    "none": 0.0
+  },
+  "by_subject": {
+    "natural science": {
+      "n": 1287,
+      "correct": 992,
+      "accuracy": 0.7707847707847708,
+      "ci95_low": 0.7470349948199055,
+      "ci95_high": 0.7929228715814829
+    },
+    "social science": {
+      "n": 762,
+      "correct": 640,
+      "accuracy": 0.8398950131233596,
+      "ci95_low": 0.8121629063365366,
+      "ci95_high": 0.8642172948041397
+    },
+    "language science": {
+      "n": 48,
+      "correct": 45,
+      "accuracy": 0.9375,
+      "ci95_low": 0.8316456183361519,
+      "ci95_high": 0.9785167672589278
+    }
+  },
+  "by_topic": {
+    "geography": {
+      "n": 594,
+      "correct": 524,
+      "accuracy": 0.8821548821548821,
+      "ci95_low": 0.8537375370426931,
+      "ci95_high": 0.9056611183291546
+    },
+    "physics": {
+      "n": 449,
+      "correct": 309,
+      "accuracy": 0.688195991091314,
+      "ci95_low": 0.6439046473255453,
+      "ci95_high": 0.7292943976945357
+    },
+    "biology": {
+      "n": 428,
+      "correct": 363,
+      "accuracy": 0.8481308411214953,
+      "ci95_low": 0.8110431764928463,
+      "ci95_high": 0.8790248886993701
+    },
+    "earth-science": {
+      "n": 180,
+      "correct": 140,
+      "accuracy": 0.7777777777777778,
+      "ci95_low": 0.7115975043523399,
+      "ci95_high": 0.8323494410674561
+    },
+    "science-and-engineering-practices": {
+      "n": 114,
+      "correct": 112,
+      "accuracy": 0.9824561403508771,
+      "ci95_low": 0.9382819730166376,
+      "ci95_high": 0.9951755812623291
+    },
+    "chemistry": {
+      "n": 110,
+      "correct": 62,
+      "accuracy": 0.5636363636363636,
+      "ci95_low": 0.4703630323852813,
+      "ci95_high": 0.6526150121476685
+    },
+    "us-history": {
+      "n": 89,
+      "correct": 78,
+      "accuracy": 0.8764044943820225,
+      "ci95_low": 0.7920955228875639,
+      "ci95_high": 0.9295648302275672
+    },
+    "economics": {
+      "n": 64,
+      "correct": 25,
+      "accuracy": 0.390625,
+      "ci95_low": 0.2805556911069803,
+      "ci95_high": 0.5130808221570375
+    },
+    "writing-strategies": {
+      "n": 30,
+      "correct": 28,
+      "accuracy": 0.9333333333333333,
+      "ci95_low": 0.7867654148312584,
+      "ci95_high": 0.9815229763754831
+    },
+    "world-history": {
+      "n": 14,
+      "correct": 12,
+      "accuracy": 0.8571428571428571,
+      "ci95_low": 0.600586202762663,
+      "ci95_high": 0.959906079092351
+    },
+    "reading-comprehension": {
+      "n": 8,
+      "correct": 8,
+      "accuracy": 1.0,
+      "ci95_low": 0.6755924316585924,
+      "ci95_high": 1.0
+    },
+    "literacy-in-science": {
+      "n": 6,
+      "correct": 6,
+      "accuracy": 1.0,
+      "ci95_low": 0.6096657083436265,
+      "ci95_high": 1.0
+    },
+    "word-study": {
+      "n": 5,
+      "correct": 4,
+      "accuracy": 0.8,
+      "ci95_low": 0.375534627029995,
+      "ci95_high": 0.9637758917743693
+    },
+    "vocabulary": {
+      "n": 5,
+      "correct": 5,
+      "accuracy": 1.0,
+      "ci95_low": 0.5655175313406071,
+      "ci95_high": 1.0
+    },
+    "civics": {
+      "n": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "ci95_low": 0.2065493117918027,
+      "ci95_high": 1.0
+    }
+  },
+  "by_grade": {
+    "grade4": {
+      "n": 404,
+      "correct": 351,
+      "accuracy": 0.8688118811881188,
+      "ci95_low": 0.8323892259601776,
+      "ci95_high": 0.8982868578725213
+    },
+    "grade5": {
+      "n": 335,
+      "correct": 288,
+      "accuracy": 0.8597014925373134,
+      "ci95_low": 0.8184207901203183,
+      "ci95_high": 0.892826295155713
+    },
+    "grade3": {
+      "n": 310,
+      "correct": 275,
+      "accuracy": 0.8870967741935484,
+      "ci95_low": 0.8470263414607733,
+      "ci95_high": 0.9176909806403037
+    },
+    "grade8": {
+      "n": 305,
+      "correct": 195,
+      "accuracy": 0.639344262295082,
+      "ci95_low": 0.5840287491118973,
+      "ci95_high": 0.6911933674649772
+    },
+    "grade7": {
+      "n": 302,
+      "correct": 222,
+      "accuracy": 0.7350993377483444,
+      "ci95_low": 0.6826028582405275,
+      "ci95_high": 0.7816899832839874
+    },
+    "grade6": {
+      "n": 287,
+      "correct": 212,
+      "accuracy": 0.7386759581881533,
+      "ci95_low": 0.6849315623104519,
+      "ci95_high": 0.7861154490990019
+    },
+    "grade2": {
+      "n": 144,
+      "correct": 124,
+      "accuracy": 0.8611111111111112,
+      "ci95_low": 0.7951980389950397,
+      "ci95_high": 0.9082582227799683
+    },
+    "grade12": {
+      "n": 8,
+      "correct": 8,
+      "accuracy": 1.0,
+      "ci95_low": 0.6755924316585924,
+      "ci95_high": 1.0
+    },
+    "grade1": {
+      "n": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "ci95_low": 0.2065493117918027,
+      "ci95_high": 1.0
+    },
+    "grade10": {
+      "n": 1,
+      "correct": 1,
+      "accuracy": 1.0,
+      "ci95_low": 0.2065493117918027,
+      "ci95_high": 1.0
+    }
+  },
+  "by_near_dup_in_train": {
+    "False": {
+      "n": 1583,
+      "correct": 1374,
+      "accuracy": 0.8679722046746684,
+      "ci95_low": 0.8504017514352088,
+      "ci95_high": 0.8837610683472484
+    },
+    "True": {
+      "n": 514,
+      "correct": 303,
+      "accuracy": 0.5894941634241245,
+      "ci95_low": 0.5464559883094126,
+      "ci95_high": 0.6312045647848677
+    }
+  },
+  "latency_s_per_example_batched": 1.567219485976638,
+  "mean_new_tokens": 47.58941344778255,
+  "generated_tokens_per_s_batched": 30.77348017848096,
+  "dataset": "scienceqa",
+  "split": "validation",
+  "adapter": "/kaggle/working/scienceqa_qwen25vl3b_qlora_r16_n500_seed42/outputs/scienceqa_qwen25vl3b_qlora_r16_n500_seed42/adapter",
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "quantized": true,
+  "generation": {
+    "max_new_tokens": 160,
+    "do_sample": false,
+    "batch_size": 8
+  },
+  "peak_vram_gb": 3.9
+}

@@ -26,12 +26,13 @@ Full plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log list
 | Model | Train examples | Accuracy | Δ vs base | Peak train VRAM |
 |---|---:|---:|---:|---:|
 | M0 Qwen2.5-VL-3B (no fine-tuning) | n/a | 78.7% | n/a | n/a |
+| QLoRA | 500 | 80.0% | +1.3 pp | 4.96 GB |
 | QLoRA | 2,000 | 83.8% | +5.2 pp | 4.96 GB |
 | QLoRA | 5,000 | 88.7% | +10.0 pp | 4.96 GB |
 | QLoRA | 6,218 | **89.5%** | **+10.8 pp** | 4.95 GB |
 | LoRA | 6,218 | 89.3% | +10.6 pp | 8.82 GB |
 
-All gains over the base are significant (paired bootstrap and McNemar, p < 0.001). Returns diminish after ~5,000 examples
+All gains over the base are significant (paired bootstrap and McNemar; p = 0.03 at 500 examples, p < 0.001 from 2,000). Returns diminish after ~5,000 examples
 (+0.8 pp from 5,000 → 6,218, n.s.). Questions whose template and figure also appear in training gain more (+20.6 pp)
 than novel ones (+7.6 pp). Both are reported throughout. Full write-up: [`results/reports/scaling/README.md`](results/reports/scaling/README.md).
 
