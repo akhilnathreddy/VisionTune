@@ -1,0 +1,88 @@
+{
+  "run_name": "scienceqa_qwen25vl3b_qlora_r16_n5000_seed42",
+  "method": "qlora",
+  "n_train": 5000,
+  "commit": "ecb3795 Record D2 scaling result: QLoRA on 2,000 examples reaches 83.8% vs 78.7% base",
+  "timings_s": {
+    "prepare_s": 68.1,
+    "train_s": 15878.1,
+    "eval_s": 4047.8
+  },
+  "validation": {
+    "overall": {
+      "n": 2097,
+      "correct": 1860,
+      "accuracy": 0.8869814020028612,
+      "ci95_low": 0.872716405660331,
+      "ci95_high": 0.8998311814689958
+    },
+    "format": {
+      "strict": 1.0,
+      "lenient": 0.0,
+      "text": 0.0,
+      "none": 0.0
+    },
+    "by_subject": {
+      "natural science": {
+        "n": 1287,
+        "correct": 1083,
+        "accuracy": 0.8414918414918415,
+        "ci95_low": 0.8205263304337551,
+        "ci95_high": 0.8604248382417405
+      },
+      "social science": {
+        "n": 762,
+        "correct": 731,
+        "accuracy": 0.9593175853018373,
+        "ci95_low": 0.942833760781518,
+        "ci95_high": 0.9711935380572339
+      },
+      "language science": {
+        "n": 48,
+        "correct": 46,
+        "accuracy": 0.9583333333333334,
+        "ci95_low": 0.8602434401996508,
+        "ci95_high": 0.9884981066142424
+      }
+    },
+    "by_near_dup_in_train": {
+      "False": {
+        "n": 1583,
+        "correct": 1467,
+        "accuracy": 0.9267214150347441,
+        "ci95_low": 0.9128251861575979,
+        "ci95_high": 0.9385516117188822
+      },
+      "True": {
+        "n": 514,
+        "correct": 393,
+        "accuracy": 0.7645914396887159,
+        "ci95_low": 0.7260353777755643,
+        "ci95_high": 0.7992219096336118
+      }
+    },
+    "latency_s_per_example_batched": 1.9172992689613932,
+    "mean_new_tokens": 57.97472579876013,
+    "generated_tokens_per_s_batched": 30.418710820739857,
+    "peak_vram_gb": 3.9
+  },
+  "train": {
+    "train_seconds_this_session": 15651.4,
+    "peak_vram_gb": 4.96,
+    "adapter_size_mb": 28.17,
+    "lora_targets": {
+      "lm_attn": 144
+    },
+    "parameters": {
+      "total": 3761995776,
+      "trainable": 7372800
+    },
+    "final_eval": {
+      "eval_loss": 0.11493375152349472,
+      "eval_runtime": 149.3031,
+      "eval_samples_per_second": 2.009,
+      "eval_steps_per_second": 2.009,
+      "epoch": 2.0
+    }
+  }
+}

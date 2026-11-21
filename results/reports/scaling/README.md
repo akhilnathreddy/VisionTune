@@ -10,12 +10,20 @@ batch 1 × 8, fp16 on one Kaggle T4. The test split is untouched.
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | M0 base | n/a | 78.7% (76.9–80.4) | n/a | n/a | 85.9% | 56.4% | n/a | n/a | n/a |
 | QLoRA D2 | 2,000 | **83.8%** (82.2–85.3) | **+5.2 pp (+3.7, +6.5)**, p < 0.001 | 60 / 168, p = 5e-13 | 89.8% (+3.9) | 65.4% (+8.9) | 93 min | 4.96 GB | 0.179 |
-| QLoRA D3 | 5,000 | running | | | | | | | |
+| QLoRA D3 | 5,000 | **88.7%** (87.3–90.0) | **+10.0 pp (+8.4, +11.7)**, p < 0.001 | 61 / 271, p = 1e-32 | 92.7% (+6.8) | 76.5% (+20.0) | 261 min | 4.96 GB | 0.115 |
 | QLoRA D4 | 6,218 (all) | **89.5%** (88.1–90.7) | **+10.8 pp (+9.1, +12.5)**, p < 0.001 | 62 / 289, p = 4e-36 | 93.6% (+7.6) | 77.0% (+20.6) | 282 min | 4.95 GB | 0.104 |
 | LoRA D4 | 6,218 | queued | | | | | | | |
 | QLoRA D1 | 500 | queued (rescore on full validation) | | | | | | | |
 
-**D4 vs D2:** +5.7 pp (+4.2, +7.1), McNemar 62 / 181, p = 1e-14. More data keeps helping between 2,000 and 6,218 examples.
+**Marginal gains between budgets (paired):**
+
+| Step | Δ accuracy (95% CI) | McNemar | Reading |
+|---|---:|---:|---|
+| 2,000 → 5,000 | +4.9 pp (+3.5, +6.3) | 54 / 156, p = 1e-12 | large, clearly significant |
+| 5,000 → 6,218 | +0.8 pp (−0.1, +1.7) | 35 / 52, p = 0.09 | small, not significant at α = 0.05 |
+
+**H4 (gains diminish with data): supported.** Accuracy rises steeply up to 5,000 examples, then flattens. The last 1,218
+examples (+24% data) add under 1 pp.
 
 D4 by subject: natural science 85.2%, social science 96.5%, language science 93.8% (n = 48). D4's validation loss
 (300 examples) fell 0.199 → 0.147 → 0.125 → 0.113 → 0.105 → 0.104 at steps 250–1,500, flattening only in the last
