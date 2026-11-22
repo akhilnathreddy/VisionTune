@@ -1,0 +1,65 @@
+{
+  "overall": {
+    "n": 3088,
+    "correct": 2450,
+    "accuracy": 0.7933937823834197,
+    "ci95_low": 0.7787535619635907,
+    "ci95_high": 0.8073049485059683
+  },
+  "format": {
+    "strict": 0.02849740932642487,
+    "lenient": 0.9708549222797928,
+    "text": 0.0003238341968911917,
+    "none": 0.0003238341968911917
+  },
+  "by_subject": {
+    "diagram": {
+      "n": 3088,
+      "correct": 2450,
+      "accuracy": 0.7933937823834197,
+      "ci95_low": 0.7787535619635907,
+      "ci95_high": 0.8073049485059683
+    }
+  },
+  "by_topic": {
+    "unknown": {
+      "n": 3088,
+      "correct": 2450,
+      "accuracy": 0.7933937823834197,
+      "ci95_low": 0.7787535619635907,
+      "ci95_high": 0.8073049485059683
+    }
+  },
+  "by_grade": {
+    "unknown": {
+      "n": 3088,
+      "correct": 2450,
+      "accuracy": 0.7933937823834197,
+      "ci95_low": 0.7787535619635907,
+      "ci95_high": 0.8073049485059683
+    }
+  },
+  "by_near_dup_in_train": {
+    "unknown": {
+      "n": 3088,
+      "correct": 2450,
+      "accuracy": 0.7933937823834197,
+      "ci95_low": 0.7787535619635907,
+      "ci95_high": 0.8073049485059683
+    }
+  },
+  "latency_s_per_example_batched": 0.6113511713118526,
+  "mean_new_tokens": 31.760038860103627,
+  "generated_tokens_per_s_batched": 53.47200508331804,
+  "dataset": "ai2d",
+  "split": "test",
+  "adapter": null,
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "quantized": false,
+  "generation": {
+    "max_new_tokens": 160,
+    "do_sample": false,
+    "batch_size": 8
+  },
+  "peak_vram_gb": 7.77
+}
