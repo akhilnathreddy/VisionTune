@@ -6,7 +6,9 @@ STEM VQA, and what it costs in memory, time and latency.
 
 > Experimental research project. Model answers are not verified scientific facts.
 
-Full plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log lists what changed from the original plan and why).
+📄 **Final project report: [`docs/final_report.md`](docs/final_report.md)** covers methods, all results, the hypotheses,
+engineering findings, limitations and references.
+Project plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log lists what changed from the original plan and why).
 
 ## Status
 
@@ -18,7 +20,8 @@ Full plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log list
 | M4 LoRA · M5 QLoRA | ✅ Full data (6,218 examples): LoRA 89.3%, QLoRA 89.5% (equal, p = 0.61); QLoRA uses 44% less training VRAM |
 | M6 Benchmarking | ✅ Validation scaling study, held-out ScienceQA test and AI2D transfer evaluation done |
 | M7 Application | ✅ FastAPI backend + Streamlit UI built and tested on CPU (`docs/deployment.md`). Live GPU deployment (M8) not done yet |
-| M8–M9 | Not started |
+| M8 Deployment | Not started (needs a GPU host and a Hugging Face account) |
+| M9 Documentation | ✅ [Final report](docs/final_report.md), reproduction notebooks and per-question results committed; model cards pending adapter publication |
 
 ### Final held-out result (ScienceQA **test**, n = 2,017, evaluated once)
 
@@ -154,6 +157,30 @@ tests/
 
 Every training run writes `config.yaml`, `sample_ids.json`, `environment.json` and `run_summary.json` next to its adapter.
 These record the exact examples, settings, versions, hardware, peak VRAM, time and adapter size.
+
+## References
+
+1. Lu et al. (2022). *Learn to Explain: Multimodal Reasoning via Thought Chains for Science Question Answering* (ScienceQA). NeurIPS 2022. [arXiv:2209.09513](https://arxiv.org/abs/2209.09513)
+2. Kembhavi et al. (2016). *A Diagram Is Worth A Dozen Images* (AI2D). ECCV 2016. [arXiv:1603.07396](https://arxiv.org/abs/1603.07396)
+3. Bai et al. (2025). *Qwen2.5-VL Technical Report.* [arXiv:2502.13923](https://arxiv.org/abs/2502.13923)
+4. Hu et al. (2022). *LoRA: Low-Rank Adaptation of Large Language Models.* ICLR 2022. [arXiv:2106.09685](https://arxiv.org/abs/2106.09685)
+5. Dettmers et al. (2023). *QLoRA: Efficient Finetuning of Quantized LLMs.* NeurIPS 2023. [arXiv:2305.14314](https://arxiv.org/abs/2305.14314)
+6. Wolf et al. (2020). *Transformers: State-of-the-Art Natural Language Processing.* EMNLP 2020 System Demonstrations.
+
+Statistical methods (Wilson intervals, paired bootstrap, McNemar's test) and their sources are listed in the
+[final report](docs/final_report.md#references).
+
+## Citing this project
+
+```bibtex
+@misc{visiontune2026,
+  title        = {VisionTune AI: Parameter-Efficient Fine-Tuning of Qwen2.5-VL-3B for Scientific Visual Question Answering},
+  author       = {akhilnathreddy},
+  year         = {2026},
+  howpublished = {\url{https://github.com/akhilnathreddy/VisionTune}},
+  note         = {Final report: docs/final_report.md}
+}
+```
 
 ## Licenses and attribution
 
