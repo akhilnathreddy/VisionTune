@@ -16,7 +16,7 @@ Full plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log list
 | M2 Dataset | ✅ Validated, de-duplicated pipeline run on the real data (see below) |
 | M3 Baseline | ✅ M0 = 78.7% on the full validation split (n = 2,097) |
 | M4 LoRA · M5 QLoRA | ✅ Full data (6,218 examples): LoRA 89.3%, QLoRA 89.5% (equal, p = 0.61); QLoRA uses 44% less training VRAM |
-| M6 Benchmarking | ✅ Validation scaling study and held-out test evaluation done. 🔄 AI2D transfer (H5) next |
+| M6 Benchmarking | ✅ Validation scaling study, held-out ScienceQA test and AI2D transfer evaluation done |
 | M7–M9 | Not started |
 
 ### Final held-out result (ScienceQA **test**, n = 2,017, evaluated once)
@@ -29,6 +29,17 @@ Full plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log list
 
 Both gains are significant (p < 1e-29). QLoRA vs LoRA differs by +0.7 pp, which is not significant (p = 0.07). Novel test questions improve by +7.5 pp,
 and questions sharing a training template by +19.9 pp. Details: [`results/reports/test/README.md`](results/reports/test/README.md).
+
+### Cross-dataset transfer (AI2D test, n = 3,088, never used for training)
+
+| Model | AI2D accuracy | Δ vs base |
+|---|---:|---:|
+| M0 base | 79.3% | n/a |
+| LoRA (6,218) | 77.9% | −1.5 pp (p = 0.003) |
+| QLoRA (6,218) | 78.5% | −0.9 pp (n.s.) |
+
+**The ScienceQA gain does not transfer** (H5 supported). The adapters learned ScienceQA's question templates and
+answer style, not general diagram understanding. Details: [`results/reports/ai2d/README.md`](results/reports/ai2d/README.md).
 
 ### Development results (ScienceQA **validation**, n = 2,097)
 

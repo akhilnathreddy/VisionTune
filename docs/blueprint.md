@@ -606,6 +606,7 @@ Details: `results/reports/scaling/README.md`.
 | ScienceQA **test** accuracy (95% CI, n = 2,017) | 81.1% (79.3–82.7) | 90.8% (89.4–92.0) | 91.5% (90.2–92.7) |
 | Format compliance (strict) | 4.2% | 100% | 100% |
 | Accuracy: novel / near-dup items | 85.9% / 56.4% | 93.1% / 77.4% | 93.6% / 77.0% |
+| AI2D test accuracy (n = 3,088, cross-dataset) | 79.3% | 77.9% (−1.5 pp, p = 0.003) | 78.5% (−0.9 pp, n.s.) |
 | Explanation evaluation | TBD | TBD | TBD |
 | Training time | N/A | 288 min | 282 min |
 | Peak training VRAM | N/A | 8.82 GB | 4.95 GB |
@@ -616,7 +617,8 @@ Details: `results/reports/scaling/README.md`.
 On the held-out test split: H1 +10.5 / +9.7 pp (p < 1e-29), H2 QLoRA − LoRA = +0.7 pp (p = 0.07, n.s.).
 Hypotheses on validation: **H1 supported** (+10.6 / +10.8 pp, p < 0.001). **H2 supported** (QLoRA − LoRA = +0.2 pp,
 95% CI −0.6 to +1.1). **H3 supported** (−44% training VRAM). **H4 supported** (+4.9 pp from 2,000 → 5,000 examples, +0.8 pp
-n.s. from 5,000 → 6,218). **H5** is pending the AI2D evaluation.
+n.s. from 5,000 → 6,218). **H5 supported**: the ~10 pp ScienceQA gain does not transfer to AI2D (QLoRA −0.9 pp n.s.,
+LoRA −1.5 pp p = 0.003); see `results/reports/ai2d/README.md`.
 
 ---
 
@@ -1107,6 +1109,6 @@ Then proceed to `02_dataset_exploration.ipynb`.
 
 ---
 
-**Project status:** Blueprint v1.1. M1–M5 done; validation scaling study and held-out test evaluation complete.  
+**Project status:** Blueprint v1.1. M1–M6 done: validation scaling study, held-out ScienceQA test and AI2D transfer evaluation complete.  
 **Compute preference:** Kaggle-first.  
-**Next action:** AI2D cross-dataset evaluation (H5), then the demo application (M7).
+**Next action:** Demo application (M7: FastAPI + Streamlit serving the QLoRA adapter).
