@@ -33,3 +33,5 @@ kaggle.json
 .DS_Store
 .vscode/
 .idea/
+data/feedback/
+adapters/

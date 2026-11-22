@@ -53,3 +53,26 @@ def build_messages(record: dict[str, Any], system: str | None, include_explanati
         messages.append({"role": "assistant",
                          "content": [{"type": "text", "text": build_target(record, include_explanation)}]})
     return messages
+
+
+OPEN_INSTRUCTION = (
+    "Answer the question about the image. Reply in exactly this format:\n"
+    "Answer: <short answer>\n"
+    "Explanation: <one or two sentences>"
+)
+
+
+def build_open_messages(question: str, context: str | None, system: str | None,
+                        has_image: bool = True) -> list[dict[str, Any]]:
+    """Free-form question without options (demo app only; the adapters were trained on
+    multiple-choice questions, so open answers are outside the evaluated setting)."""
+    messages: list[dict[str, Any]] = []
+    if system:
+        messages.append({"role": "system", "content": [{"type": "text", "text": system}]})
+    parts = [f"Context: {context}"] if context else []
+    parts += [f"Question: {question}", OPEN_INSTRUCTION]
+    content: list[dict[str, Any]] = [{"type": "image"}] if has_image else []
+    content.append({"type": "text", "text": "\n".join(parts)})
+    messages.append({"role": "user", "content": content})
+    return messages
+

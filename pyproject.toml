@@ -26,6 +26,7 @@ train = [
     "qwen-vl-utils>=0.0.11",
 ]
 tracking = ["wandb>=0.19"]
+app = ["fastapi>=0.115", "uvicorn>=0.30", "python-multipart>=0.0.9", "streamlit>=1.40", "requests>=2.31"]
 dev = ["pytest>=8.0"]
 
 [tool.setuptools.packages.find]

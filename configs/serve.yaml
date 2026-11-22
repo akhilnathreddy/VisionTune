@@ -1,0 +1,17 @@
+# Demo serving configuration (backend/main.py). Inherits model, processor and prompt settings.
+extends: base.yaml
+
+serve:
+  quantized_base: true          # 4-bit base: ~3.9 GB VRAM, fits small GPUs; set false to serve on fp16/bf16
+  adapters:                     # name -> local adapter directory (adapter_config.json + adapter_model.safetensors)
+    qlora: adapters/qlora_n6218
+    lora: adapters/lora_n6218
+  max_upload_mb: 8
+  max_image_side: 4096
+  max_question_chars: 1000
+  max_choices: 10
+  rate_limit_per_minute: 20     # per client IP; 0 disables
+  feedback_path: data/feedback/feedback.jsonl
+
+generation:
+  max_new_tokens: 160

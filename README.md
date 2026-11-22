@@ -17,7 +17,8 @@ Full plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log list
 | M3 Baseline | ✅ M0 = 78.7% on the full validation split (n = 2,097) |
 | M4 LoRA · M5 QLoRA | ✅ Full data (6,218 examples): LoRA 89.3%, QLoRA 89.5% (equal, p = 0.61); QLoRA uses 44% less training VRAM |
 | M6 Benchmarking | ✅ Validation scaling study, held-out ScienceQA test and AI2D transfer evaluation done |
-| M7–M9 | Not started |
+| M7 Application | ✅ FastAPI backend + Streamlit UI built and tested on CPU (`docs/deployment.md`). Live GPU deployment (M8) not done yet |
+| M8–M9 | Not started |
 
 ### Final held-out result (ScienceQA **test**, n = 2,017, evaluated once)
 
@@ -104,6 +105,19 @@ In order, these: prepare and validate the data (about 5 minutes on CPU), run the
 
 If a Kaggle session ends, add `--resume` to the training command to continue from the last checkpoint. Prediction runs resume automatically.
 
+## Demo app
+
+```bash
+VISIONTUNE_CONFIG=configs/serve.yaml uvicorn --factory backend.main:create_app --port 8000
+```
+
+```bash
+BACKEND_URL=http://localhost:8000 streamlit run frontend/app.py
+```
+
+The UI has four pages: a playground (upload an image, ask a question, pick base / QLoRA / LoRA), a side-by-side model comparison,
+the evaluation results and an About page. Setup, adapters and deployment: [`docs/deployment.md`](docs/deployment.md).
+
 ## Local development (CPU)
 
 ```bash
@@ -121,13 +135,16 @@ randomly initialized Qwen2.5-VL. The tiny-model tests download the real processo
 ## Repository layout
 
 ```text
-configs/            base.yaml → lora.yaml → qlora.yaml / smoke.yaml (inheritance via `extends:`)
+configs/            base.yaml → lora.yaml → qlora.yaml / smoke.yaml; serve.yaml for the demo (inheritance via `extends:`)
+backend/            FastAPI inference API (factory: backend.main:create_app)
+frontend/           Streamlit demo UI
 src/visiontune/
   data/             record schema, prepare (validate · dedup · leakage), nested sampling
   models/           model/processor loading (LoRA, QLoRA, inference), LoRA target presets
   training/         loss-masking collator, Trainer-based train CLI
   evaluation/       answer extraction, accuracy CIs, paired bootstrap, McNemar
   inference/        resumable batched predict + metrics CLI
+  serving/          one-model / multi-adapter inference engine for the API, results summary
   prompts.py        the one prompt/target formatter shared by every model
 notebooks/          Kaggle notebooks (01 setup · 02 LoRA pilot · 03 QLoRA pilot · 04 data-scaling run)
 results/reports/    committed reports (data prep, phase outputs)
