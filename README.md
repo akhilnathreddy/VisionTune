@@ -4,9 +4,9 @@ Parameter-efficient fine-tuning (LoRA and QLoRA) of **Qwen2.5-VL-3B-Instruct** f
 trained on **ScienceQA** and evaluated for transfer on **AI2D**. The project measures whether targeted adaptation improves
 STEM VQA, and what it costs in memory, time and latency.
 
-> Experimental research project. Model answers are not verified scientific facts.
 
-📄 **Final project report: [`docs/final_report.md`](docs/final_report.md)** covers methods, all results, the hypotheses,
+
+**Final project report: [`docs/final_report.md`](docs/final_report.md)** covers methods, all results, the hypotheses,
 engineering findings, limitations and references.
 Project plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log lists what changed from the original plan and why).
 
