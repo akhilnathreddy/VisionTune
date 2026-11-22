@@ -1,0 +1,69 @@
+{
+  "dataset": "scienceqa",
+  "split": "test",
+  "commit": "a598013 Add held-out evaluation notebook (ScienceQA test / AI2D)",
+  "timings_s": {
+    "prepare_s": 60.6,
+    "lora_n6218_s": 2850.9
+  },
+  "models": {
+    "lora_n6218": {
+      "overall": {
+        "n": 2017,
+        "correct": 1831,
+        "accuracy": 0.9077838373822509,
+        "ci95_low": 0.8943701845382134,
+        "ci95_high": 0.9196471609445166
+      },
+      "format": {
+        "strict": 1.0,
+        "lenient": 0.0,
+        "text": 0.0,
+        "none": 0.0
+      },
+      "by_subject": {
+        "natural science": {
+          "n": 1209,
+          "correct": 1051,
+          "accuracy": 0.869313482216708,
+          "ci95_low": 0.8491384872023555,
+          "ci95_high": 0.8871490081341642
+        },
+        "social science": {
+          "n": 764,
+          "correct": 740,
+          "accuracy": 0.9685863874345549,
+          "ci95_low": 0.9536834596751762,
+          "ci95_high": 0.9788007031924733
+        },
+        "language science": {
+          "n": 44,
+          "correct": 40,
+          "accuracy": 0.9090909090909091,
+          "ci95_low": 0.7884076071311003,
+          "ci95_high": 0.9640778070224066
+        }
+      },
+      "by_near_dup_in_train": {
+        "False": {
+          "n": 1535,
+          "correct": 1451,
+          "accuracy": 0.9452768729641694,
+          "ci95_low": 0.9327474737634439,
+          "ci95_high": 0.9555831545221879
+        },
+        "True": {
+          "n": 482,
+          "correct": 380,
+          "accuracy": 0.7883817427385892,
+          "ci95_low": 0.749710072060974,
+          "ci95_high": 0.8224930508263273
+        }
+      },
+      "latency_s_per_example_batched": 1.3740975176162606,
+      "mean_new_tokens": 58.291522062469014,
+      "generated_tokens_per_s_batched": 42.29928565554582,
+      "peak_vram_gb": 7.72
+    }
+  }
+}
