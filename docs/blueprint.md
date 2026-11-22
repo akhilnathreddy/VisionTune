@@ -596,13 +596,14 @@ ROUGE-L and BERTScore do not establish scientific correctness by themselves.
 ### 7.9 Results template
 
 Fill this table only with measured results. Measured on **ScienceQA validation** (n = 2,097 image questions), one Kaggle T4,
-fp16. LoRA and QLoRA are the full-data runs (6,218 examples, A1 targets, r=16, 2 epochs). The test split is still sealed.
+fp16. LoRA and QLoRA are the full-data runs (6,218 examples, A1 targets, r=16, 2 epochs). The **test** row was measured once,
+after every choice had been fixed on validation (`results/reports/test/README.md`).
 Details: `results/reports/scaling/README.md`.
 
 | Metric | Base | LoRA | QLoRA |
 |---|---:|---:|---:|
 | ScienceQA **validation** accuracy (95% CI) | 78.7% (76.9–80.4) | 89.3% (87.9–90.5) | 89.5% (88.1–90.7) |
-| ScienceQA **test** accuracy | TBD | TBD | TBD |
+| ScienceQA **test** accuracy (95% CI, n = 2,017) | 81.1% (79.3–82.7) | 90.8% (89.4–92.0) | 91.5% (90.2–92.7) |
 | Format compliance (strict) | 4.2% | 100% | 100% |
 | Accuracy: novel / near-dup items | 85.9% / 56.4% | 93.1% / 77.4% | 93.6% / 77.0% |
 | Explanation evaluation | TBD | TBD | TBD |
@@ -612,6 +613,7 @@ Details: `results/reports/scaling/README.md`.
 | Inference: s/example (batch 8) · tokens/s | 0.60 s · 52.1 | 1.41 s · 41.6 | 1.82 s · 32.7 |
 | Adapter size | N/A | 28.2 MB | 28.2 MB |
 
+On the held-out test split: H1 +10.5 / +9.7 pp (p < 1e-29), H2 QLoRA − LoRA = +0.7 pp (p = 0.07, n.s.).
 Hypotheses on validation: **H1 supported** (+10.6 / +10.8 pp, p < 0.001). **H2 supported** (QLoRA − LoRA = +0.2 pp,
 95% CI −0.6 to +1.1). **H3 supported** (−44% training VRAM). **H4 supported** (+4.9 pp from 2,000 → 5,000 examples, +0.8 pp
 n.s. from 5,000 → 6,218). **H5** is pending the AI2D evaluation.
@@ -1105,6 +1107,6 @@ Then proceed to `02_dataset_exploration.ipynb`.
 
 ---
 
-**Project status:** Blueprint v1.1. M1–M5 done on validation; data-scaling study complete. The sealed test evaluation is next.  
+**Project status:** Blueprint v1.1. M1–M5 done; validation scaling study and held-out test evaluation complete.  
 **Compute preference:** Kaggle-first.  
-**Next action:** Sealed ScienceQA test evaluation of M0 / LoRA / QLoRA, then AI2D cross-dataset evaluation (H5).
+**Next action:** AI2D cross-dataset evaluation (H5), then the demo application (M7).

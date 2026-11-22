@@ -1,0 +1,240 @@
+{
+  "overall": {
+    "n": 2017,
+    "correct": 1635,
+    "accuracy": 0.8106098165592464,
+    "ci95_low": 0.7929260731647617,
+    "ci95_high": 0.8271126708412325
+  },
+  "format": {
+    "strict": 0.03619236489836391,
+    "lenient": 0.9633118492811106,
+    "text": 0.0,
+    "none": 0.0004957858205255329
+  },
+  "by_subject": {
+    "natural science": {
+      "n": 1209,
+      "correct": 969,
+      "accuracy": 0.8014888337468983,
+      "ci95_low": 0.7780651229888996,
+      "ci95_high": 0.8230027203485281
+    },
+    "social science": {
+      "n": 764,
+      "correct": 624,
+      "accuracy": 0.8167539267015707,
+      "ci95_low": 0.7877596515098185,
+      "ci95_high": 0.842578804953788
+    },
+    "language science": {
+      "n": 44,
+      "correct": 42,
+      "accuracy": 0.9545454545454546,
+      "ci95_low": 0.8486500144514563,
+      "ci95_high": 0.9874448901635516
+    }
+  },
+  "by_topic": {
+    "geography": {
+      "n": 600,
+      "correct": 516,
+      "accuracy": 0.86,
+      "ci95_low": 0.8299394097317884,
+      "ci95_high": 0.8854801654665471
+    },
+    "physics": {
+      "n": 425,
+      "correct": 313,
+      "accuracy": 0.7364705882352941,
+      "ci95_low": 0.6926028035517505,
+      "ci95_high": 0.776101879349809
+    },
+    "biology": {
+      "n": 403,
+      "correct": 346,
+      "accuracy": 0.858560794044665,
+      "ci95_low": 0.8211448992037038,
+      "ci95_high": 0.8892055178719596
+    },
+    "earth-science": {
+      "n": 156,
+      "correct": 116,
+      "accuracy": 0.7435897435897436,
+      "ci95_low": 0.6697908317609412,
+      "ci95_high": 0.8056803040251775
+    },
+    "science-and-engineering-practices": {
+      "n": 128,
+      "correct": 123,
+      "accuracy": 0.9609375,
+      "ci95_low": 0.911812978715417,
+      "ci95_high": 0.9832013893085425
+    },
+    "chemistry": {
+      "n": 94,
+      "correct": 68,
+      "accuracy": 0.723404255319149,
+      "ci95_low": 0.6255660772814526,
+      "ci95_high": 0.8036998032585707
+    },
+    "us-history": {
+      "n": 84,
+      "correct": 69,
+      "accuracy": 0.8214285714285714,
+      "ci95_low": 0.7260557746402734,
+      "ci95_high": 0.8886881138119045
+    },
+    "economics": {
+      "n": 71,
+      "correct": 31,
+      "accuracy": 0.43661971830985913,
+      "ci95_low": 0.32746122665833843,
+      "ci95_high": 0.5522845701963881
+    },
+    "writing-strategies": {
+      "n": 23,
+      "correct": 21,
+      "accuracy": 0.9130434782608695,
+      "ci95_low": 0.7320401874258483,
+      "ci95_high": 0.9758199957343082
+    },
+    "reading-comprehension": {
+      "n": 12,
+      "correct": 12,
+      "accuracy": 1.0,
+      "ci95_low": 0.7575059904469021,
+      "ci95_high": 1.0
+    },
+    "world-history": {
+      "n": 7,
+      "correct": 6,
+      "accuracy": 0.8571428571428571,
+      "ci95_low": 0.486872167860775,
+      "ci95_high": 0.9743203759421759
+    },
+    "vocabulary": {
+      "n": 5,
+      "correct": 5,
+      "accuracy": 1.0,
+      "ci95_low": 0.5655175313406071,
+      "ci95_high": 1.0
+    },
+    "word-study": {
+      "n": 4,
+      "correct": 4,
+      "accuracy": 1.0,
+      "ci95_low": 0.5101091596030786,
+      "ci95_high": 0.9999999999999999
+    },
+    "literacy-in-science": {
+      "n": 3,
+      "correct": 3,
+      "accuracy": 1.0,
+      "ci95_low": 0.43850296436068037,
+      "ci95_high": 1.0
+    },
+    "civics": {
+      "n": 2,
+      "correct": 2,
+      "accuracy": 1.0,
+      "ci95_low": 0.3423802239546494,
+      "ci95_high": 1.0
+    }
+  },
+  "by_grade": {
+    "grade4": {
+      "n": 361,
+      "correct": 316,
+      "accuracy": 0.8753462603878116,
+      "ci95_low": 0.8372693434376587,
+      "ci95_high": 0.9055190469798128
+    },
+    "grade3": {
+      "n": 342,
+      "correct": 316,
+      "accuracy": 0.9239766081871345,
+      "ci95_low": 0.8909403014192394,
+      "ci95_high": 0.9475942136099069
+    },
+    "grade5": {
+      "n": 336,
+      "correct": 303,
+      "accuracy": 0.9017857142857143,
+      "ci95_low": 0.8652788633553313,
+      "ci95_high": 0.9292092514520763
+    },
+    "grade8": {
+      "n": 302,
+      "correct": 180,
+      "accuracy": 0.5960264900662252,
+      "ci95_low": 0.5398139252756753,
+      "ci95_high": 0.6498268128118028
+    },
+    "grade7": {
+      "n": 281,
+      "correct": 197,
+      "accuracy": 0.701067615658363,
+      "ci95_low": 0.6451234234534193,
+      "ci95_high": 0.7515884893552118
+    },
+    "grade6": {
+      "n": 271,
+      "correct": 208,
+      "accuracy": 0.7675276752767528,
+      "ci95_low": 0.7137096723425962,
+      "ci95_high": 0.8138672099451139
+    },
+    "grade2": {
+      "n": 117,
+      "correct": 109,
+      "accuracy": 0.9316239316239316,
+      "ci95_low": 0.8708575748233915,
+      "ci95_high": 0.9649482896127
+    },
+    "grade12": {
+      "n": 5,
+      "correct": 4,
+      "accuracy": 0.8,
+      "ci95_low": 0.375534627029995,
+      "ci95_high": 0.9637758917743693
+    },
+    "grade1": {
+      "n": 2,
+      "correct": 2,
+      "accuracy": 1.0,
+      "ci95_low": 0.3423802239546494,
+      "ci95_high": 1.0
+    }
+  },
+  "by_near_dup_in_train": {
+    "False": {
+      "n": 1535,
+      "correct": 1342,
+      "accuracy": 0.8742671009771987,
+      "ci95_low": 0.8567412411767689,
+      "ci95_high": 0.8899243710399035
+    },
+    "True": {
+      "n": 482,
+      "correct": 293,
+      "accuracy": 0.6078838174273858,
+      "ci95_low": 0.5636095518604873,
+      "ci95_high": 0.6504520480685749
+    }
+  },
+  "latency_s_per_example_batched": 0.5801959423579577,
+  "mean_new_tokens": 29.735250371839367,
+  "generated_tokens_per_s_batched": 51.7149219874936,
+  "dataset": "scienceqa",
+  "split": "test",
+  "adapter": null,
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "quantized": false,
+  "generation": {
+    "max_new_tokens": 160,
+    "do_sample": false,
+    "batch_size": 8
+  },
+  "peak_vram_gb": 7.69
+}

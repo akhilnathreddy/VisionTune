@@ -1,0 +1,128 @@
+{
+  "dataset": "scienceqa",
+  "split": "test",
+  "commit": "a598013 Add held-out evaluation notebook (ScienceQA test / AI2D)",
+  "timings_s": {
+    "prepare_s": 56.9,
+    "base_s": 1240.8,
+    "qlora_n6218_s": 3551.3
+  },
+  "models": {
+    "base": {
+      "overall": {
+        "n": 2017,
+        "correct": 1635,
+        "accuracy": 0.8106098165592464,
+        "ci95_low": 0.7929260731647617,
+        "ci95_high": 0.8271126708412325
+      },
+      "format": {
+        "strict": 0.03619236489836391,
+        "lenient": 0.9633118492811106,
+        "text": 0.0,
+        "none": 0.0004957858205255329
+      },
+      "by_subject": {
+        "natural science": {
+          "n": 1209,
+          "correct": 969,
+          "accuracy": 0.8014888337468983,
+          "ci95_low": 0.7780651229888996,
+          "ci95_high": 0.8230027203485281
+        },
+        "social science": {
+          "n": 764,
+          "correct": 624,
+          "accuracy": 0.8167539267015707,
+          "ci95_low": 0.7877596515098185,
+          "ci95_high": 0.842578804953788
+        },
+        "language science": {
+          "n": 44,
+          "correct": 42,
+          "accuracy": 0.9545454545454546,
+          "ci95_low": 0.8486500144514563,
+          "ci95_high": 0.9874448901635516
+        }
+      },
+      "by_near_dup_in_train": {
+        "False": {
+          "n": 1535,
+          "correct": 1342,
+          "accuracy": 0.8742671009771987,
+          "ci95_low": 0.8567412411767689,
+          "ci95_high": 0.8899243710399035
+        },
+        "True": {
+          "n": 482,
+          "correct": 293,
+          "accuracy": 0.6078838174273858,
+          "ci95_low": 0.5636095518604873,
+          "ci95_high": 0.6504520480685749
+        }
+      },
+      "latency_s_per_example_batched": 0.5801959423579577,
+      "mean_new_tokens": 29.735250371839367,
+      "generated_tokens_per_s_batched": 51.7149219874936,
+      "peak_vram_gb": 7.69
+    },
+    "qlora_n6218": {
+      "overall": {
+        "n": 2017,
+        "correct": 1846,
+        "accuracy": 0.9152206246901339,
+        "ci95_low": 0.9022609124912884,
+        "ci95_high": 0.9266017341248654
+      },
+      "format": {
+        "strict": 1.0,
+        "lenient": 0.0,
+        "text": 0.0,
+        "none": 0.0
+      },
+      "by_subject": {
+        "natural science": {
+          "n": 1209,
+          "correct": 1062,
+          "accuracy": 0.8784119106699751,
+          "ci95_low": 0.8587818504956388,
+          "ci95_high": 0.8956448664505152
+        },
+        "social science": {
+          "n": 764,
+          "correct": 742,
+          "accuracy": 0.9712041884816754,
+          "ci95_low": 0.9567855910266954,
+          "ci95_high": 0.9809079805720584
+        },
+        "language science": {
+          "n": 44,
+          "correct": 42,
+          "accuracy": 0.9545454545454546,
+          "ci95_low": 0.8486500144514563,
+          "ci95_high": 0.9874448901635516
+        }
+      },
+      "by_near_dup_in_train": {
+        "False": {
+          "n": 1535,
+          "correct": 1457,
+          "accuracy": 0.949185667752443,
+          "ci95_low": 0.9370343460584183,
+          "ci95_high": 0.9590943565062386
+        },
+        "True": {
+          "n": 482,
+          "correct": 389,
+          "accuracy": 0.8070539419087137,
+          "ci95_low": 0.7694533087641757,
+          "ci95_high": 0.8397989371877712
+        }
+      },
+      "latency_s_per_example_batched": 1.7479919754918183,
+      "mean_new_tokens": 58.47942488844819,
+      "generated_tokens_per_s_batched": 33.33566115796888,
+      "peak_vram_gb": 3.89
+    }
+  }
+}

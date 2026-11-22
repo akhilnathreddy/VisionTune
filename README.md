@@ -16,10 +16,21 @@ Full plan: [`docs/blueprint.md`](docs/blueprint.md) (v1.1; its revision log list
 | M2 Dataset | ✅ Validated, de-duplicated pipeline run on the real data (see below) |
 | M3 Baseline | ✅ M0 = 78.7% on the full validation split (n = 2,097) |
 | M4 LoRA · M5 QLoRA | ✅ Full data (6,218 examples): LoRA 89.3%, QLoRA 89.5% (equal, p = 0.61); QLoRA uses 44% less training VRAM |
-| M6 Benchmarking | 🔄 Validation scaling study done (below). Sealed test set and AI2D transfer are next |
+| M6 Benchmarking | ✅ Validation scaling study and held-out test evaluation done. 🔄 AI2D transfer (H5) next |
 | M7–M9 | Not started |
 
-### Headline results (ScienceQA **validation**, n = 2,097; test split still sealed)
+### Final held-out result (ScienceQA **test**, n = 2,017, evaluated once)
+
+| Model | Test accuracy | Δ vs base | Peak train VRAM | Peak inference VRAM |
+|---|---:|---:|---:|---:|
+| M0 Qwen2.5-VL-3B (no fine-tuning) | 81.1% | n/a | n/a | 7.69 GB |
+| LoRA (6,218 examples) | 90.8% | +9.7 pp | 8.82 GB | 7.72 GB |
+| **QLoRA (6,218 examples)** | **91.5%** | **+10.5 pp** | **4.95 GB** | **3.89 GB** |
+
+Both gains are significant (p < 1e-29). QLoRA vs LoRA differs by +0.7 pp, which is not significant (p = 0.07). Novel test questions improve by +7.5 pp,
+and questions sharing a training template by +19.9 pp. Details: [`results/reports/test/README.md`](results/reports/test/README.md).
+
+### Development results (ScienceQA **validation**, n = 2,097)
 
 ![Scaling curve](results/plots/scaling_curve.png)
 
